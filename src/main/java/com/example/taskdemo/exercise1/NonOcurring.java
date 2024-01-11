@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Slf4j
-public class NonConcurrency {
+public class NonOcurring {
 
     public static void main(String[] args) {
         int[] array1 = {1, 3, 6, 4, 1, 2};
