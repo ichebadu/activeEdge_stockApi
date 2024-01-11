@@ -1,6 +1,5 @@
 package com.example.taskdemo.exercise3.model;
 
-import com.example.taskdemo.exercise3.enums.TransactionStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -27,7 +26,6 @@ public class Stock {
     @NotBlank(message = "Name cannot be blank")
     private String name;
     @Column(name = "amount", nullable = false)
-    @NotBlank(message = "Amount cannot be null")
     @DecimalMin(value = "0.01", message = "Amount must be greater than 0.00")
     private BigDecimal currentPrice;
     @CreationTimestamp
@@ -36,6 +34,4 @@ public class Stock {
     @UpdateTimestamp
     @Column(name = "last_update", nullable = false)
     private Timestamp lastUpdate;
-    @Enumerated(EnumType.STRING)
-    private TransactionStatus transactionStatus;
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -15,29 +16,28 @@ import java.util.List;
 public class StockDataInitializer implements CommandLineRunner {
 
     private final StockRepository stockRepository;
+
     @Override
     public void run(String... args) throws Exception {
-        Stock stock1 = Stock.builder()
-                .name("pearls")
-                .amount(BigDecimal.valueOf(50.0))
+        List<Stock> stockData = Arrays.asList(
+                createStock("pearls", 780.0),
+                createStock("phone", 500.0),
+                createStock("cars", 300.0)
+        );
+
+        for (Stock stock : stockData) {
+            if (stockRepository.findByName(stock.getName()).isEmpty()) {
+                stockRepository.save(stock);
+            }
+        }
+    }
+
+    private Stock createStock(String name, double currentPrice) {
+        return Stock.builder()
+                .name(name)
+                .currentPrice(BigDecimal.valueOf(currentPrice))
                 .createDate(new Timestamp(System.currentTimeMillis()))
                 .lastUpdate(new Timestamp(System.currentTimeMillis()))
                 .build();
-
-        Stock stock2 = Stock.builder()
-                .name("pearls")
-                .amount(BigDecimal.valueOf(500.0))
-                .createDate(new Timestamp(System.currentTimeMillis()))
-                .lastUpdate(new Timestamp(System.currentTimeMillis()))
-                .build();
-
-        Stock stock3 = Stock.builder()
-                .name("pearls")
-                .amount(BigDecimal.valueOf(500.0))
-                .createDate(new Timestamp(System.currentTimeMillis()))
-                .lastUpdate(new Timestamp(System.currentTimeMillis()))
-                .build();
-
-        stockRepository.saveAll(List.of(stock1,stock2,stock3));
     }
 }

@@ -14,6 +14,6 @@ import java.math.BigDecimal;
 public class UpdateStockRequest {
     private Long id;
     private String name;
-    private BigDecimal amount;
+    private BigDecimal currentPrice;
 
 }

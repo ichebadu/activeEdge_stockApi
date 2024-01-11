@@ -1,7 +1,6 @@
 package com.example.taskdemo.exercise3.controller;
 
 import com.example.taskdemo.exercise3.dto.request.CreateStockRequest;
-import com.example.taskdemo.exercise3.dto.request.SingleStockRequest;
 import com.example.taskdemo.exercise3.dto.request.UpdateStockRequest;
 import com.example.taskdemo.exercise3.dto.response.ApiResponse;
 import com.example.taskdemo.exercise3.dto.response.StockResponse;
@@ -32,10 +31,10 @@ public class StockController {
     }
     @GetMapping(GET_STOCK)
     public ResponseEntity<ApiResponse<StockResponse>> getSingleStock(@PathVariable("id") Long id ) {
-        return new ResponseEntity<>(stockService.getStock(id),HttpStatus.CREATED);
+        return new ResponseEntity<>(stockService.getStock(id),HttpStatus.OK);
     }
     @GetMapping(LIST_OF_STOCK)
     public ResponseEntity<ApiResponse<List<StockResponse>>> getListOfStock() {
-        return new ResponseEntity<>(stockService.getListOfStock(),HttpStatus.CREATED);
+        return new ResponseEntity<>(stockService.getListOfStock(),HttpStatus.OK);
     }
 }

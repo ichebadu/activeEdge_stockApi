@@ -34,15 +34,6 @@ public class GlobalExceptionHandler {
         ApiResponse<ExceptionHandlerResponse> apiResponse = new ApiResponse<>(exceptionHandlerResponse,ResponseCode.INPUT_NOT_VALID_RESPONSE.getStatusCode(), ResponseCode.INPUT_NOT_VALID_RESPONSE.getMessage());
         return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
     }
-//    @ExceptionHandler(InputNotValidException.class)
-//    public ResponseEntity<ApiResponse<ExceptionHandlerResponse>> inputNotValidException(InputNotValidException e,HttpServletRequest request){
-//        ExceptionHandlerResponse exceptionHandlerResponse = ExceptionHandlerResponse.builder()
-//                .message(e.getMessage())
-//                .path(request.getRequestURI())
-//                .build();
-//        ApiResponse<ExceptionHandlerResponse> apiResponse = new ApiResponse<>(exceptionHandlerResponse,ResponseCode.INPUT_NOT_VALID_RESPONSE.getStatusCode(), ResponseCode.INPUT_NOT_VALID_RESPONSE.getMessage());
-//        return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
-//    }
     @ExceptionHandler(StockAlreadyExistException.class)
     public ResponseEntity<ApiResponse<ExceptionHandlerResponse>> stockAlreadyExistException(StockAlreadyExistException e, HttpServletRequest request){
         ExceptionHandlerResponse exceptionHandlerResponse = ExceptionHandlerResponse.builder()
