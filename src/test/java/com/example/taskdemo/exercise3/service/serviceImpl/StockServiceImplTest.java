@@ -101,10 +101,9 @@ class StockServiceImplTest {
 
         when(stockRepository.findById(request.getId())).thenReturn(java.util.Optional.of(existingStock));
 
-        // Act
+
         ApiResponse<StockResponse> response = stockService.update(request);
 
-        // Assert
         assertNotNull(response);
         assertEquals(ResponseCode.UPDATE_SUCCESS_RESPONSE.getStatusCode(), response.getStatusCode());
         assertEquals(ResponseCode.UPDATE_SUCCESS_RESPONSE.getMessage(), response.getMessage());
